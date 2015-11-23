@@ -35,7 +35,7 @@ class Pager extends BasePager
             $countQuery->setParameters($this->getParameters());
         }
 
-        $countQuery->select(sprintf('count(DISTINCT %s.%s) as cnt', $countQuery->getRootAlias(), current($this->getCountColumn())));
+        $countQuery->select(sprintf('count(%s.%s) as cnt', $countQuery->getRootAlias(), current($this->getCountColumn())));
 
         return $countQuery->resetDQLPart('orderBy')->getQuery()->getSingleScalarResult();
     }
